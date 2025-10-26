@@ -2,7 +2,18 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import { Container, Table, Alert } from 'react-bootstrap';
 import axios from 'axios';
+// URL DE PRODUCCIÓN (Render)
+const API_BASE_URL_PROD = 'https://webnotas-api.onrender.com';
+// URL LOCAL (Comentada para que no afecte el despliegue en Vercel/Render)
+// const API_BASE_URL_LOCAL = 'http://localhost:3001';
 
+// Función para determinar la URL base (usa la URL de Render siempre)
+const getApiBaseUrl = () => {
+    // if (window.location.hostname === "localhost") {
+    //     return API_BASE_URL_LOCAL;
+    // }
+    return API_BASE_URL_PROD;
+};
 const AlumnosPage = () => {
     const [alumnos, setAlumnos] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -10,6 +21,8 @@ const AlumnosPage = () => {
 
     useEffect(() => {
         const fetchAlumnos = async () => {
+
+            const apiUrl = getApiBaseUrl(); // Obtiene la URL base (Render)
             try {
                 const token = localStorage.getItem('token');
                 if (!token) {
@@ -25,7 +38,8 @@ const AlumnosPage = () => {
                 };
 
                 // Llamada a la API protegida
-                const response = await axios.get('http://localhost:3001/api/alumnos', config);
+               const response = await axios.get(`${apiUrl}/api/alumnos`, config);
+              
                 setAlumnos(response.data.alumnos);
             } catch (err) {
                 setError('Error al cargar la lista. El token podría haber expirado o la API falló.');
