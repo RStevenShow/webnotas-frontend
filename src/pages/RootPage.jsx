@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import Layout from '../components/Layout';
+import Layout from '../components/Layout'
 import CarouselComponent from '../components/Carousel';
 import LoginForm from '../components/LoginForm'; // Separamos la lógica del formulario
 import { Container, Row, Col } from 'react-bootstrap';

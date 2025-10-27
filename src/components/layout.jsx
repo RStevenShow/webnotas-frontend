@@ -4,7 +4,7 @@ import NavbarComponent from './Navbar'; // Lo crearemos en el siguiente paso
 import FooterComponent from './Footer'; // Lo crearemos más abajo
 
 // El Layout recibe el contenido específico de la página (children)
-const layout = ({ children }) => {
+const Layout = ({ children }) => {
     return (
         <>
             {/* Aquí se incluye la barra de navegación que aparecerá en todas las rutas */}
@@ -23,4 +23,4 @@ const layout = ({ children }) => {
     );
 };
 
-export default layout;
+export default Layout;
